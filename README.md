@@ -18,18 +18,25 @@ Pages eles são ignorados: as URLs limpas continuam funcionando (`/privacidade` 
 
 ## Publicar no GitHub Pages (hospedagem atual)
 
-O workflow [`site-pages.yml`](../.github/workflows/site-pages.yml) publica a pasta
-`site/` a cada push na `main` que a altere.
+Este repositório é privado e o GitHub Pages gratuito só publica repositórios
+públicos, então o site é publicado pelo repositório público
+[`juniorJBF/meuciclo-site`](https://github.com/juniorJBF/meuciclo-site), que contém
+só esta pasta (na raiz). O Pages dele serve a branch `main` e o endereço é
+`https://juniorjbf.github.io/meuciclo-site/`.
 
-1. No GitHub: repositório → Settings → Pages → Build and deployment →
-   **Source: GitHub Actions** (uma única vez).
-2. Faça push (ou rode o workflow manualmente em Actions → Site (GitHub Pages) →
-   Run workflow). O endereço fica `https://<usuario>.github.io/<repositorio>/`.
-3. Para usar `appmeuciclo.com.br`: Settings → Pages → Custom domain, e no
-   registro.br crie o `CNAME www` → `<usuario>.github.io` e os registros `A` do apex
-   apontando para os IPs do GitHub Pages (documentação oficial do GitHub). Marque
-   **Enforce HTTPS** quando o certificado for emitido.
-4. Confira `/privacidade` e `/excluir-conta` antes de colar as URLs no Play Console.
+A fonte da verdade continua sendo esta pasta. Depois de alterar algo aqui e fazer
+commit na `main`, reenvie para o repositório do site:
+
+```sh
+git subtree push --prefix site https://github.com/juniorJBF/meuciclo-site.git main
+```
+
+Para usar `appmeuciclo.com.br`: no `meuciclo-site`, Settings → Pages → Custom
+domain, e no registro.br crie o `CNAME www` → `juniorjbf.github.io` e os registros
+`A` do apex apontando para os IPs do GitHub Pages (documentação oficial do GitHub).
+Marque **Enforce HTTPS** quando o certificado for emitido.
+
+Confira `/privacidade` e `/excluir-conta` antes de colar as URLs no Play Console.
 
 Limitação: o GitHub Pages não aplica os cabeçalhos de `_headers` (CSP etc.). Se isso
 voltar a ser requisito, use o Cloudflare Pages (instruções abaixo).
