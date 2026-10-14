@@ -1,0 +1,43 @@
+# Site appmeuciclo.com.br
+
+Site estático, sem build, sem JavaScript, sem terceiros. Três páginas:
+
+| Página | Arquivo | Uso |
+| --- | --- | --- |
+| `/` | `index.html` | Apresentação do aplicativo |
+| `/privacidade` | `privacidade.html` | URL de política de privacidade exigida pelo Play Console |
+| `/excluir-conta` | `excluir-conta.html` | URL de exclusão de conta exigida pelo Play Console (Data Safety → Data deletion) |
+
+`_headers` e `_redirects` são lidos pelo Cloudflare Pages e pelo Netlify. No GitHub
+Pages eles são ignorados: as URLs limpas continuam funcionando (`/privacidade` serve
+`privacidade.html`), mas os cabeçalhos de segurança não.
+
+## Publicar no Cloudflare Pages
+
+1. No registro.br, troque os servidores DNS para os que a Cloudflare indicar ao
+   adicionar o domínio (plano gratuito).
+2. Cloudflare → Workers & Pages → Create → Pages → conecte o repositório.
+   Build command: vazio. Build output directory: `site`.
+3. Custom domains: `appmeuciclo.com.br` e `www.appmeuciclo.com.br`.
+4. Em SSL/TLS, modo **Full (strict)** e **Always Use HTTPS**.
+5. Confira `https://appmeuciclo.com.br/privacidade` e `/excluir-conta` antes de colar
+   as URLs no Play Console.
+
+## E-mails usados nas páginas
+
+`suporte@appmeuciclo.com.br` e `privacidade@appmeuciclo.com.br`. Crie-os (Cloudflare
+Email Routing redireciona gratuitamente para uma caixa existente) antes de publicar,
+ou troque os endereços nas três páginas.
+
+## Pendências de conteúdo
+
+- A política de privacidade está marcada como **versão em revisão** até a revisão
+  jurídica do [ADR-0008](../docs/adr/0008-distribuicao-bloqueada-ate-revisao-lgpd.md):
+  prazos de retenção, base legal por finalidade e o tratamento de menores de 18 anos
+  precisam ser confirmados por quem assina a revisão. Remova o aviso `.draft` e preencha
+  a data quando isso acontecer.
+- As telas na home são reproduções em HTML das telas reais. Para trocar por capturas do
+  aparelho, substitua cada `<figure>` por `<img src="/assets/screens/...png" alt="...">`
+  com 1080×2340 ou proporção 9:19,5 e `width="230"`.
+- `/.well-known/assetlinks.json` (App Links do login) entra quando houver a impressão
+  digital do certificado do Play App Signing. Ver `docs/SECURITY.md`.
