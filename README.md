@@ -54,9 +54,10 @@ voltar a ser requisito, use o Cloudflare Pages (instruções abaixo).
 
 ## E-mails usados nas páginas
 
-`suporte@appmeuciclo.com.br` e `privacidade@appmeuciclo.com.br`. Crie-os (Cloudflare
-Email Routing redireciona gratuitamente para uma caixa existente) antes de publicar,
-ou troque os endereços nas três páginas.
+Todas as páginas usam `meucicloa@gmail.com`, caixa dedicada ao aplicativo
+(suporte e privacidade no mesmo endereço; o assunto do mailto distingue os fluxos).
+Se um dia houver endereços no domínio (ex.: via Cloudflare Email Routing), troque-os
+nas três páginas.
 
 ## Pendências de conteúdo
 
